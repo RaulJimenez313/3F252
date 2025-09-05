@@ -1,1 +1,136 @@
+@startuml
 
+class JuegoBomberman {
++ iniciarJuego()
+- Nivel nivel[3]
+- Jugador jugadores[1]
+- Enemigo enemigos[10]
+- Tiempo tiempo[1]
+- Musica musica[1]
+}
+
+class Jugador {
++ mover()
++ plantarBomba()
+- Vida vidas[3]
+- Puntuacion puntos[]
+- PowerUp powerups[5]
+}
+
+class Nivel {
++ cargarNivel()
+- Facil facil[1]
+- Dificil dificil[1]
+- Avanzado avanzado[1]
+}
+
+class Facil
+class Dificil
+class Avanzado
+
+class PowerUp {
++ activar()
+}
+class MasBombas
+class MasAlcance
+class Velocidad
+class Patada
+class Guante
+class ControlRemoto
+class BombaAtravesadora
+class BombaAtraviesaMuro
+class BombaInfinita
+
+class Bomba {
++ detonar()
+- Explosion explosiones[5]
+}
+class Explosion
+class ExplosionCentral
+class ExplosionArriba
+class ExplosionAbajo
+class ExplosionIzquierda
+class ExplosionDerecha
+
+class Muro
+class MuroIndestructible
+class MuroDestructible
+class Portal
+
+class Enemigo {
++ mover()
++ atacar()
+- IA ia[1]
+}
+class Glob
+class Ballon
+class Onil
+class Doria
+class Pass
+class Minvo
+class Kondoria
+class Ovapi
+class Pontan
+class Boss
+
+class Tiempo
+class Vida
+class Puntuacion
+class IA
+class Musica
+
+Nivel <|-- Facil
+Nivel <|-- Dificil
+Nivel <|-- Avanzado
+
+PowerUp <|-- MasBombas
+PowerUp <|-- MasAlcance
+PowerUp <|-- Velocidad
+PowerUp <|-- Patada
+PowerUp <|-- Guante
+PowerUp <|-- ControlRemoto
+PowerUp <|-- BombaAtravesadora
+PowerUp <|-- BombaAtraviesaMuro
+PowerUp <|-- BombaInfinita
+
+Explosion <|-- ExplosionCentral
+Explosion <|-- ExplosionArriba
+Explosion <|-- ExplosionAbajo
+Explosion <|-- ExplosionIzquierda
+Explosion <|-- ExplosionDerecha
+
+Muro <|-- MuroIndestructible
+Muro <|-- MuroDestructible
+
+Enemigo <|-- Glob
+Enemigo <|-- Ballon
+Enemigo <|-- Onil
+Enemigo <|-- Doria
+Enemigo <|-- Pass
+Enemigo <|-- Minvo
+Enemigo <|-- Kondoria
+Enemigo <|-- Ovapi
+Enemigo <|-- Pontan
+Enemigo <|-- Boss
+
+JuegoBomberman *-- "3"Nivel
+JuegoBomberman *-- "1"Jugador
+JuegoBomberman *-- Tiempo
+JuegoBomberman *-- Musica
+JuegoBomberman *-- "*"Enemigo
+
+Jugador *-- "3"Vida
+Jugador *-- Puntuacion
+Jugador *-- "*"PowerUp
+Jugador -- "*"Bomba
+
+Bomba *-- Explosion
+
+Enemigo *-- IA
+
+Jugador o-- "*" PowerUp
+Jugador o-- "*" Bomba 
+Jugador o-- Portal
+Jugador o-- "*" Muro
+
+@enduml
